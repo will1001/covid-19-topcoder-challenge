@@ -1,8 +1,8 @@
 import 'package:covid19_app/components/HeaderAppBar.dart';
-import 'package:covid19_app/components/PrimaryButton.dart';
+// import 'package:covid19_app/components/PrimaryButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+// import 'package:charts_flutter/flutter.dart' as charts;
 
 class Home extends StatelessWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -18,14 +18,7 @@ class Home extends StatelessWidget {
           child: HeaderAppBar()),
       body: Column(
         children: <Widget>[
-          PrimaryButton(
-        title: "page2",
-        link: "/page2",
-      ),
-      PrimaryButton(
-        title: "page3",
-        link: "/page3",
-      )
+        Text("data")
         ],
       )
       // body: FutureBuilder<List<TestAPI>>(
@@ -75,30 +68,30 @@ class Home extends StatelessWidget {
     );
   }
 
-  static List<charts.Series<TimeSeriesSales, DateTime>> _createSampleData() {
-    final data = [
-      new TimeSeriesSales(new DateTime(2017, 9, 19), 5),
-      new TimeSeriesSales(new DateTime(2017, 9, 20), 15),
-      new TimeSeriesSales(new DateTime(2017, 9, 21), 25),
-      new TimeSeriesSales(new DateTime(2017, 9, 22), 35),
-      new TimeSeriesSales(new DateTime(2017, 9, 23), 25),
-      new TimeSeriesSales(new DateTime(2017, 9, 24), 15),
-      new TimeSeriesSales(new DateTime(2017, 9, 25), 5),
-      new TimeSeriesSales(new DateTime(2017, 9, 26), 25),
-      new TimeSeriesSales(new DateTime(2017, 10, 3), 100),
-      new TimeSeriesSales(new DateTime(2017, 10, 10), 75),
-    ];
+  // static List<charts.Series<TimeSeriesSales, DateTime>> _createSampleData() {
+  //   final data = [
+  //     new TimeSeriesSales(new DateTime(2017, 9, 19), 5),
+  //     new TimeSeriesSales(new DateTime(2017, 9, 20), 15),
+  //     new TimeSeriesSales(new DateTime(2017, 9, 21), 25),
+  //     new TimeSeriesSales(new DateTime(2017, 9, 22), 35),
+  //     new TimeSeriesSales(new DateTime(2017, 9, 23), 25),
+  //     new TimeSeriesSales(new DateTime(2017, 9, 24), 15),
+  //     new TimeSeriesSales(new DateTime(2017, 9, 25), 5),
+  //     new TimeSeriesSales(new DateTime(2017, 9, 26), 25),
+  //     new TimeSeriesSales(new DateTime(2017, 10, 3), 100),
+  //     new TimeSeriesSales(new DateTime(2017, 10, 10), 75),
+  //   ];
 
-    return [
-      new charts.Series<TimeSeriesSales, DateTime>(
-        id: 'Sales',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (TimeSeriesSales sales, _) => sales.time,
-        measureFn: (TimeSeriesSales sales, _) => sales.sales,
-        data: data,
-      )
-    ];
-  }
+  //   return [
+  //     new charts.Series<TimeSeriesSales, DateTime>(
+  //       id: 'Sales',
+  //       colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+  //       domainFn: (TimeSeriesSales sales, _) => sales.time,
+  //       measureFn: (TimeSeriesSales sales, _) => sales.sales,
+  //       data: data,
+  //     )
+  //   ];
+  // }
 }
 
 class TimeSeriesSales {
