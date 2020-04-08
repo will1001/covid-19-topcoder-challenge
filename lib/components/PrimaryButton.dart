@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({Key key, this.link,this.title}) : super(key: key);
+  const PrimaryButton({Key key, this.link, this.title}) : super(key: key);
 
   final String link;
   final String title;

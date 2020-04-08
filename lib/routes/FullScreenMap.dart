@@ -1,19 +1,19 @@
 import 'package:covid19_app/components/HeaderAppBar.dart';
 import 'package:flutter/material.dart';
 
-class DetailNews extends StatefulWidget {
+class FullScreenMap extends StatefulWidget {
   @override
-  _DetailNewsState createState() => _DetailNewsState();
+  _FullScreenMapState createState() => _FullScreenMapState();
 }
 
-class _DetailNewsState extends State<DetailNews> {
+class _FullScreenMapState extends State<FullScreenMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size(double.infinity, kToolbarHeight),
           child: HeaderAppBar()),
-      body: Text("DetailNews"),
+      body: Text("FullScreenMap"),
     );
   }
 }

@@ -9,25 +9,24 @@ Future<List<NewsAPI>> fetchNewsAPI() async {
   if (response.statusCode == 200) {
     var responseJson = json.decode(response.body)["articles"];
     return (responseJson as List).map((p) => NewsAPI.fromJson(p)).toList();
-    // return NewsAPI.fromJson(json.decode(response.body));
   } else {
     throw Exception('Failed to load album');
   }
 }
 
 class NewsAPI {
-  // final List<dynamic> articles;
   final String title;
+  final String srcimg;
 
   NewsAPI({
-    // this.articles,
     this.title,
+    this.srcimg,
   });
 
   factory NewsAPI.fromJson(Map<String, dynamic> json) {
     return NewsAPI(
-      // articles: json['articles'],
       title: json['title'],
+      srcimg: json['urlToImage'],
     );
   }
 }
