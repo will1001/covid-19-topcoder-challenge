@@ -6,16 +6,15 @@ import 'package:geolocator/geolocator.dart';
 
 Widget mapMarkerDashboard(BuildContext context) {
   Completer<GoogleMapController> _controller = Completer();
-  final Set<Marker> _markers = {};
+  final Set<Marker> _markers={};
   BitmapDescriptor pinLocationIcon;
+  Geolocator geolocator = Geolocator();
 
   BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5),
           'assets/052_-_hospital_map_marker_pin_doctor-512.png')
       .then((onValue) {
     pinLocationIcon = onValue;
   });
-
-  Geolocator geolocator = Geolocator();
 
   Future<Position> _getLocation() async {
     var currentLocation;
@@ -26,14 +25,6 @@ Widget mapMarkerDashboard(BuildContext context) {
       currentLocation = null;
     }
     return currentLocation;
-  }
-
-  CameraPosition _kLake = CameraPosition(
-      bearing: 0, target: LatLng(-0.789275, 113.9213257), tilt: 0, zoom: 0);
-
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 
   return Card(
