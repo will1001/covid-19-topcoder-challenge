@@ -22,10 +22,10 @@ Widget liveReportCountry(BuildContext context) {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text("Live Reports"),
+                      Text("Total Cases Every Country :"),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.16,
-                        child: ListView(
+                        child: Column(
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           children: data
                               .map((f) {
@@ -44,21 +44,18 @@ Widget liveReportCountry(BuildContext context) {
                                           ),
                                         ),
                                         Text(
-                                          f.country,
-                                          style: TextStyle(fontSize: 11),
+                                          "  "+f.country,
                                         )
                                       ],
                                     ),
                                     Row(
                                       children: <Widget>[
                                         Text(
-                                          f.total_cases,
-                                          style: TextStyle(fontSize: 11),
+                                          f.totalCases+"  ",
                                         ),
                                         Icon(
                                           Icons.person_outline,
                                           size: 17,
-                                          // color: Colors.red,
                                         ),
                                       ],
                                     )
@@ -66,7 +63,7 @@ Widget liveReportCountry(BuildContext context) {
                                 );
                               })
                               .toList()
-                              .getRange(1, data.length - 1)
+                              .getRange(1, 5)
                               .toList(),
                         ),
                       ),

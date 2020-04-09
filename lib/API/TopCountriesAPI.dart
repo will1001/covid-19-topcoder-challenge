@@ -18,19 +18,28 @@ Future<List<TopCountriesAPI>> fetchTopCountriesAPI() async {
 
 class TopCountriesAPI {
   final String country;
-  final String total_cases;
+  final String totalCases;
+  final String totalRecovered;
+  final String totalDeaths;
+  final String activeCases;
   final String flag;
 
   TopCountriesAPI({
     this.country,
-    this.total_cases,
+    this.totalCases,
+    this.totalRecovered,
+    this.totalDeaths,
+    this.activeCases,
     this.flag,
   });
 
   factory TopCountriesAPI.fromJson(Map<String, dynamic> json) {
     return TopCountriesAPI(
       country: json['country'],
-      total_cases: json['total_cases'],
+      totalCases: json['total_cases'],
+      totalRecovered: json['total_recovered'],
+      totalDeaths: json['total_deaths'],
+      activeCases: json['active_cases'],
       flag: json['flag'],
     );
   }
