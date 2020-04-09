@@ -1,3 +1,4 @@
+import 'package:covid19_app/routes/DetailNews.dart';
 import 'package:covid19_app/routes/DetailsChart.dart';
 import 'package:covid19_app/routes/FullScreenMap.dart';
 import 'package:covid19_app/routes/Home.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/detailsChart': (context) => DetailsChart(),
         '/newsAndUpdate': (context) => NewsAndUpdate(),
         '/fullScreenMap': (context) => FullScreenMap(),
+        '/detailNews': (context) => DetailNews(),
         // '/page2': (context) => Page2(),
         // '/page3': (context) => Page3(),
       },

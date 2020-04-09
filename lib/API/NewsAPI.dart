@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:uuid/uuid.dart';
 
 Future<List<NewsAPI>> fetchNewsAPI() async {
   final response = await http.get(
@@ -15,16 +16,19 @@ Future<List<NewsAPI>> fetchNewsAPI() async {
 }
 
 class NewsAPI {
+  final dynamic id;
   final String title;
   final String srcimg;
 
   NewsAPI({
+    this.id,
     this.title,
     this.srcimg,
   });
 
   factory NewsAPI.fromJson(Map<String, dynamic> json) {
     return NewsAPI(
+      id: Uuid(),
       title: json['title'],
       srcimg: json['urlToImage'],
     );

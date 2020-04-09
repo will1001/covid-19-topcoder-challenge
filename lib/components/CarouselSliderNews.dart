@@ -1,4 +1,5 @@
 import 'package:covid19_app/API/NewsAPI.dart';
+import 'package:covid19_app/routes/DetailNews.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -38,29 +39,37 @@ Widget carouselSliderNews(BuildContext context) {
                       .map((f) {
                         return Builder(
                           builder: (BuildContext context) {
-                            return Stack(
-                              alignment: Alignment.bottomCenter,
-                              children: <Widget>[
-                                Image.network(
-                                  f.srcimg,
-                                  height: MediaQuery.of(context).size.height,
-                                ),
-                                Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 5.0),
-                                    child: Container(
-                                      decoration:
-                                          BoxDecoration(color: Colors.amber),
-                                      child: Text(
-                                        f.title,
-                                        style: TextStyle(
-                                            fontSize: 16.0,
-                                            color: Colors.brown,
-                                            fontWeight: FontWeight.bold),
+                            return Hero(
+                              tag: f.id,
+                              child: Material(
+                                child: InkWell(
+                                  onTap: (){Navigator.pushNamed(context,"/detailNews",arguments: ScreenArguments(f));},
+                                  child: Stack(
+                                    alignment: Alignment.bottomCenter,
+                                    children: <Widget>[
+                                      Image.network(
+                                        f.srcimg,
+                                        height: MediaQuery.of(context).size.height,
                                       ),
-                                    )),
-                              ],
+                                      Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          margin:
+                                              EdgeInsets.symmetric(horizontal: 5.0),
+                                          child: Container(
+                                            decoration:
+                                                BoxDecoration(color: Colors.amber),
+                                            child: Text(
+                                              f.title,
+                                              style: TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.brown,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             );
                           },
                         );
