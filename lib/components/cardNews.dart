@@ -2,6 +2,7 @@ import 'package:covid19_app/API/NewsAPI.dart';
 import 'package:covid19_app/routes/DetailNews.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 Widget cardNews(BuildContext context,NewsAPI data) {
   return Padding(
@@ -21,6 +22,10 @@ Widget cardNews(BuildContext context,NewsAPI data) {
                 Text(
                   data.title,
                   style: TextStyle(fontSize: 12),
+                ),
+                Text(
+                  timeago.format(DateTime.parse(data.publishedAt)),
+                  style: TextStyle(fontSize: 12,color: Colors.black38),
                 ),
               ],
             ),

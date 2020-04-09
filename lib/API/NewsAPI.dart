@@ -17,20 +17,38 @@ Future<List<NewsAPI>> fetchNewsAPI() async {
 
 class NewsAPI {
   final dynamic id;
+  final dynamic source;
+  final dynamic author;
   final String title;
+  final String description;
+  final String url;
   final String srcimg;
+  final String publishedAt;
+  final String content;
 
   NewsAPI({
     this.id,
+    this.source,
+    this.author,
     this.title,
+    this.description,
+    this.url,
     this.srcimg,
+    this.publishedAt,
+    this.content,
   });
 
   factory NewsAPI.fromJson(Map<String, dynamic> json) {
     return NewsAPI(
       id: Uuid(),
+      source: json['source'],
+      author: json['author'],
       title: json['title'],
+      description: json['description'],
+      url: json['url'],
       srcimg: json['urlToImage'],
+      publishedAt: json['publishedAt'],
+      content: json['content'],
     );
   }
 }

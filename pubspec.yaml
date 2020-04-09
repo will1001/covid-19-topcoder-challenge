@@ -32,6 +32,9 @@ dependencies:
   vector_math: ^2.0.8
   intl: ^0.16.1
   uuid: ^2.0.4
+  timeago: ^2.0.26
+  font_awesome_flutter: ^8.8.1
+  share: ^0.6.3+6
 
 dev_dependencies:
   flutter_test:
