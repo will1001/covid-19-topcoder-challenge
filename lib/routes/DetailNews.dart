@@ -68,8 +68,6 @@ class _DetailNewsState extends State<DetailNews> {
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Row(
-                                // mainAxisAlignment:
-                                //     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Icon(
                                     Icons.person,
@@ -80,11 +78,6 @@ class _DetailNewsState extends State<DetailNews> {
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 12),
                                   ),
-                                  //   Text(
-                                  //     data.publishedAt,
-                                  //     style: TextStyle(
-                                  //         color: Colors.white, fontSize: 10),
-                                  //   ),
                                 ],
                               ),
                             )
@@ -120,28 +113,6 @@ class _DetailNewsState extends State<DetailNews> {
           ),
         ],
       ),
-      // bottomNavigationBar: Container(
-      //   height: 90,
-      //   child: Column(
-      //     children: <Widget>[
-      //       Container(
-      //         color: Colors.white.withOpacity(0.4),
-      //         width: MediaQuery.of(context).size.width,
-      //         height: 30,
-      //       ),
-      //       Container(
-      //         color: Colors.white.withOpacity(0.6),
-      //         width: MediaQuery.of(context).size.width,
-      //         height: 30,
-      //       ),
-      //       Container(
-      //         color: Colors.white.withOpacity(0.85),
-      //         width: MediaQuery.of(context).size.width,
-      //         height: 30,
-      //       )
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

@@ -52,8 +52,8 @@ class _DetailsChartState extends State<DetailsChart> {
                 return SearchableDropdown.single(
                   items: items,
                   value: selectedCountry,
-                  hint: "Select one",
-                  searchHint: "Select one",
+                  hint: "Select Country",
+                  searchHint: "Select Country",
                   isExpanded: true,
                   onChanged: (value) {
                     setState(() {
@@ -73,7 +73,7 @@ class _DetailsChartState extends State<DetailsChart> {
               if (snapshot.hasData) {
                 var data = snapshot.data;
 
-                var totalCasesWorld = (String date,String typeData) {
+                var totalCasesWorld = (String date, String typeData) {
                   var dataWhereDate =
                       data.where((f) => f.date == date).toList();
 
@@ -89,15 +89,14 @@ class _DetailsChartState extends State<DetailsChart> {
                           case "Total Recovered":
                             return int.parse(f.recovered);
                             break;
-                          default: return int.parse(f.cases);
+                          default:
+                            return int.parse(f.cases);
                         }
                       })
                       .toList()
                       .reduce((a, b) => a + b);
                   return temp;
                 };
-               
-                
 
                 var timeLine = data
                     .map((f) {
@@ -107,66 +106,51 @@ class _DetailsChartState extends State<DetailsChart> {
                     .toSet()
                     .toList();
 
-                var chartData = timeLine.map((f) {
-                  return new LinearCases(
-                      convertStringToDateTime(f), totalCasesWorld(f,"Total Cases"));
+                var totalCasesData = timeLine.map((f) {
+                  return new LinearCases(convertStringToDateTime(f),
+                      totalCasesWorld(f, "Total Cases"));
                 }).toList();
-                
-                var chartDataDeaths = timeLine.map((f) {
-                  return new LinearCases(
-                      convertStringToDateTime(f), totalCasesWorld(f,"Total Deaths"));
+
+                var totalDeathsDatas = timeLine.map((f) {
+                  return new LinearCases(convertStringToDateTime(f),
+                      totalCasesWorld(f, "Total Deaths"));
                 }).toList();
-                
-                var chartDataRecovered = timeLine.map((f) {
-                  return new LinearCases(
-                      convertStringToDateTime(f), totalCasesWorld(f,"Total Recovered"));
+
+                var totalRecoveredDatas = timeLine.map((f) {
+                  return new LinearCases(convertStringToDateTime(f),
+                      totalCasesWorld(f, "Total Recovered"));
                 }).toList();
 
                 List<ChartsAPI> chartDatawhereCountry = data
-                    .where((a) => a.countrycode == (selectedCountry==null?selectedCountry:selectedCountry.split('|')[0]))
+                    .where((a) =>
+                        a.countrycode ==
+                        (selectedCountry == null
+                            ? selectedCountry
+                            : selectedCountry.split('|')[0]))
                     .toList();
 
-                  var chartData2 = chartDatawhereCountry.map((f) {
+                var totalCasesPercountryDatas = chartDatawhereCountry.map((f) {
                   return new LinearCases(
                       convertStringToDateTime(f.date), int.parse(f.cases));
                 }).toList();
-                 
-                  var chartData2Deaths = chartDatawhereCountry.map((f) {
+
+                var totalDeathsPercountryDatas = chartDatawhereCountry.map((f) {
                   return new LinearCases(
                       convertStringToDateTime(f.date), int.parse(f.deaths));
                 }).toList();
-                
-                  var chartData2Recovered = chartDatawhereCountry.map((f) {
+
+                var totalRecoveredPercountryDatas =
+                    chartDatawhereCountry.map((f) {
                   return new LinearCases(
                       convertStringToDateTime(f.date), int.parse(f.recovered));
                 }).toList();
 
                 return Column(
                   children: <Widget>[
-                    Text("total Cases :"),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      child: LineAreaChart(
-                        _plotData(selectedCountry==null?chartData:chartData2),
-                        animate: false,
-                      ),
-                    ),
-                    Text("Death :"),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      child: LineAreaChart(
-                        _plotData(selectedCountry==null?chartDataDeaths:chartData2Deaths),
-                        animate: false,
-                      ),
-                    ),
-                    Text("Recovered :"),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      child: LineAreaChart(
-                        _plotData(selectedCountry==null?chartDataRecovered:chartData2Recovered),
-                        animate: false,
-                      ),
-                    ),
+                    cardChart("Total Cases", totalCasesData, totalCasesPercountryDatas),
+                    cardChart("Total Cases", totalDeathsDatas, totalDeathsPercountryDatas),
+                    cardChart("Total Cases", totalRecoveredDatas, totalRecoveredPercountryDatas),
+                    
                   ],
                 );
               }
@@ -179,7 +163,24 @@ class _DetailsChartState extends State<DetailsChart> {
     );
   }
 
-  /// Create one series with sample hard coded data.
+  Widget cardChart(String title, var totalDatas, var perCountryDatas) {
+    return Card(
+        elevation: 9,
+        child: Column(
+          children: <Widget>[
+            Text(title),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: LineAreaChart(
+                _plotData(
+                    selectedCountry == null ? totalDatas : perCountryDatas),
+                animate: false,
+              ),
+            ),
+          ],
+        ));
+  }
+
   static List<charts.Series<LinearCases, DateTime>> _plotData(var chartData) {
     return [
       new charts.Series<LinearCases, DateTime>(

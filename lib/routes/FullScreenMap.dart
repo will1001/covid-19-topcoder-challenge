@@ -13,9 +13,6 @@ class _FullScreenMapState extends State<FullScreenMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: PreferredSize(
-      //     preferredSize: const Size(double.infinity, kToolbarHeight),
-      //     child: HeaderAppBar(bgColor: Colors.white,)),
       body: Stack(
         children: <Widget>[
           currentLocation(),
