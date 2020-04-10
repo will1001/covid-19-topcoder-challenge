@@ -18,6 +18,7 @@ Future<List<ReportByCountryAPI>> fetchReportByCountryAPI() async {
 
 class ReportByCountryAPI {
   final String country;
+  final dynamic countryCode;
   final String flag;
   final int cases;
   final int active;
@@ -26,6 +27,7 @@ class ReportByCountryAPI {
 
   ReportByCountryAPI({
     this.country,
+    this.countryCode,
     this.flag,
     this.cases,
     this.active,
@@ -36,6 +38,7 @@ class ReportByCountryAPI {
   factory ReportByCountryAPI.fromJson(Map<String, dynamic> json) {
     return ReportByCountryAPI(
       country: json['country'],
+      countryCode: json['countryInfo']['iso2'],
       flag: json['countryInfo']['flag'],
       cases: json['cases'],
       active: json['active'],

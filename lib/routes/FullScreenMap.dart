@@ -50,7 +50,7 @@ class _FullScreenMapState extends State<FullScreenMap> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final LatLng _currentPosition =
-                    LatLng(snapshot.data.latitude, snapshot.data.longitude);
+                    LatLng(37.09024, -95.712891);
                 final LatLng _hospitalPosition =
                     LatLng(-8.629470099999999, 116.5289445);
                 final LatLng _hospitalPosition2 =
@@ -58,7 +58,7 @@ class _FullScreenMapState extends State<FullScreenMap> {
 
                 CameraPosition _kGooglePlex = CameraPosition(
                   target: _currentPosition,
-                  zoom: 12,
+                  zoom: 3,
                 );
 
                 _markers.add(
