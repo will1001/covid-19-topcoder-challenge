@@ -89,7 +89,7 @@ class _DetailsChartState extends State<DetailsChart> {
                           case "Total Recovered":
                             return int.parse(f.recovered);
                             break;
-                          default:
+                          default: return int.parse(f.cases);
                         }
                       })
                       .toList()

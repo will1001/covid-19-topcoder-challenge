@@ -2,13 +2,14 @@ import 'package:covid19_app/API/TopCountriesAPI.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget liveReportCountry(BuildContext context) {
+import 'button.dart';
+
+Widget totalCasesEachCountry(BuildContext context) {
   return Card(
     elevation: 9,
     child: Container(
       width: MediaQuery.of(context).size.width * 0.47,
       height: MediaQuery.of(context).size.height * 0.25,
-      // decoration: BoxDecoration(color: Colors.amber),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder<List<TopCountriesAPI>>(
@@ -26,7 +27,6 @@ Widget liveReportCountry(BuildContext context) {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.16,
                         child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.start,
                           children: data
                               .map((f) {
                                 return Row(
@@ -72,7 +72,7 @@ Widget liveReportCountry(BuildContext context) {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
-                      child: Text("more"),
+                      child: button("More"),
                       onTap: () {
                         Navigator.pushNamed(context, '/reportsByCountry');
                       },

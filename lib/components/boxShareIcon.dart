@@ -21,7 +21,6 @@ Widget boxShareIcon(BuildContext context,NewsAPI data) {
             children: <Widget>[
               boxIcon(FontAwesomeIcons.share,data.url),
               boxIcon(FontAwesomeIcons.comment,data.url),
-              // boxIcon(FontAwesomeIcons.twitter,data.url),
             ],
           ),
         ),
@@ -47,6 +46,6 @@ Widget boxIcon(IconData icon,String link) {
         size: 17,
       ),
       onPressed: () {
-        Share.share('${link}');
+        Share.share('$link');
       });
 }

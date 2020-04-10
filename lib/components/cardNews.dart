@@ -15,7 +15,7 @@ Widget cardNews(BuildContext context,NewsAPI data) {
             Navigator.pushNamed(context,"/detailNews",arguments: ScreenArguments(data));
           },
           child: ListTile(
-            leading: Image.network(data.srcimg, width: 100),
+            leading: Image.network(data.srcimg==null?"":data.srcimg, width: 100),
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

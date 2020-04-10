@@ -1,3 +1,4 @@
+import 'package:covid19_app/components/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -41,7 +42,7 @@ Widget pieChart(
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
-              child: Text("details"),
+              child: button("Details"),
               onTap: () {
                 Navigator.pushNamed(context, '/detailsChart');
               },

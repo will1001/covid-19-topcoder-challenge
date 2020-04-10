@@ -11,6 +11,28 @@ class ReportsByCountry extends StatefulWidget {
 class _ReportsByCountryState extends State<ReportsByCountry> {
   String selectedCountry;
   String sortingCategory;
+  bool isAsc = true;
+
+  sortingData(List<ReportByCountryAPI> data) {
+    data.sort((a, b) {
+      switch (sortingCategory) {
+        case "Total Cases":
+          return b.cases.compareTo(a.cases);
+          break;
+        case "Active Cases":
+          return b.active.compareTo(a.active);
+          break;
+        case "Total Recovered":
+          return b.recovered.compareTo(a.recovered);
+          break;
+        case "Total Deaths":
+          return b.deaths.compareTo(a.deaths);
+          break;
+        default:
+          return a.country.compareTo(b.country);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,29 +44,14 @@ class _ReportsByCountryState extends State<ReportsByCountry> {
         future: fetchReportByCountryAPI(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<ReportByCountryAPI> dataSearch = snapshot.data
+            var dataSearch = snapshot.data
                 .where((f) => f.country == selectedCountry)
                 .toList();
-            List<ReportByCountryAPI> allData = snapshot.data;
+            var allData = snapshot.data;
 
-            allData.sort((a, b) {
-              switch (sortingCategory) {
-                case "Total Cases":
-                  return b.cases.compareTo(a.cases);
-                  break;
-                case "Active Cases":
-                  return b.active.compareTo(a.active);
-                  break;
-                case "Total Recovered":
-                  return b.recovered.compareTo(a.recovered);
-                  break;
-                case "Total Deaths":
-                  return b.deaths.compareTo(a.deaths);
-                  break;
-                default:
-                  return a.country.compareTo(b.country);
-              }
-            });
+            sortingData(dataSearch);
+            sortingData(allData);
+
 
             final List<DropdownMenuItem> items =
                 snapshot.data.reversed.map((f) {
@@ -118,10 +125,25 @@ class _ReportsByCountryState extends State<ReportsByCountry> {
                     ],
                   ),
                 ),
+                Row(
+                  children: <Widget>[
+                    Switch(
+                      value: isAsc,
+                      onChanged: (value) {
+                        setState(() {
+                          isAsc = value;
+                        });
+                      },
+                      activeTrackColor: Colors.lightGreenAccent,
+                      activeColor: Colors.green,
+                    ),
+                    Text('Order by : ${isAsc ? "Asc" : "Desc"}')
+                  ],
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: ListView(
-                    children: (selectedCountry == null ? allData : dataSearch)
+                    children: (selectedCountry == null ? isAsc?allData:allData.reversed : isAsc?dataSearch:dataSearch.reversed)
                         .map((f) {
                       return ExpansionTile(
                         leading: Image.network(

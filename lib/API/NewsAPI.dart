@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 
-Future<List<NewsAPI>> fetchNewsAPI() async {
+Future<List<NewsAPI>> fetchNewsAPI(String countryCode) async {
   final response = await http.get(
-      'http://newsapi.org/v2/top-headlines?q=corona&category=health&country=id&apiKey=3366c90bbc9e4c3baaa41ad7dcb4c45d');
+      'http://newsapi.org/v2/top-headlines?q=corona&category=health&country=$countryCode&apiKey=3366c90bbc9e4c3baaa41ad7dcb4c45d');
 
   if (response.statusCode == 200) {
     var responseJson = json.decode(response.body)["articles"];
